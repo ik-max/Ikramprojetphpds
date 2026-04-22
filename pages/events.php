@@ -164,7 +164,7 @@ include '../includes/header.php';
                                 </p>
 
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <a href="event_details.php?id=<?= $evt['id'] ?>" class="btn btn-dark btn-sm">Voir détails</a>
+                                    <a href="event_details.php?id=<?= $evt['id'] ?>" class="btn btn-secondary-ghost btn-sm">Voir détails</a>
                                     <?php if ($logged_in): ?>
                                         <?php if ($registered): ?>
                                             <form action="../actions/event_unregister.php" method="POST" class="d-inline">

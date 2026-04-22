@@ -1,194 +1,183 @@
-:root{
-  --paper:#f5f0e8;
-  --ink:#111111;
-  --accent:#d24f1d;
-  --muted:#6f6a63;
+/* ============================================
+   UniClubs — Events List Page Styles
+   Dark theme — extends global.css
+   ============================================ */
+
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
 }
 
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--paper);
-  color:var(--ink);
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  border: none;
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 0 15px var(--glow2);
 }
 
-.brand,
-.page-title,
-.hero-title,
-.event-title{
-  font-family:'Syne',sans-serif;
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px var(--glow);
+  color: #fff;
 }
 
-.brand{
-  font-weight:800;
+/* ---- HERO EVENT ---- */
+.hero-event {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  color: #fff;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
-.brand span{
-  color:var(--accent);
+.hero-event::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.page-title{
-  font-size:2rem;
-  font-weight:800;
+.hero-event:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+  border-color: var(--border2);
 }
 
-.btn-accent{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
+.hero-date {
+  width: 88px; height: 88px;
+  border-radius: var(--radius);
+  background: rgba(59,130,246,0.1);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn-accent:hover{
-  background:#b84317;
-  border-color:#b84317;
-  color:#fff;
+.hero-day {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
 }
 
-.hero-event{
-  background:linear-gradient(135deg,#070707 0%, #0d1727 100%);
-  border-radius:1.8rem;
-  color:#fff;
-  box-shadow:0 10px 24px rgba(0,0,0,.08);
-  transition:transform .2s ease, box-shadow .2s ease;
+.hero-month {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
 }
 
-.hero-event:hover{
-  transform:translateY(-3px);
-  box-shadow:0 18px 40px rgba(0,0,0,.2);
+.badge-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  box-shadow: 0 4px 12px var(--glow2);
 }
 
-.hero-date{
-  width:88px;
-  height:88px;
-  border-radius:1rem;
-  background:rgba(255,255,255,.08);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--text);
 }
 
-.hero-day{
-  font-family:'Syne',sans-serif;
-  font-size:2.2rem;
-  font-weight:800;
-  line-height:1;
-  color:#fff;
+.meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
 }
 
-.hero-month{
-  font-size:.72rem;
-  letter-spacing:.12em;
-  color:rgba(255,255,255,.7);
-  margin-top:.3rem;
+.meta-line span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.badge-accent{
-  background:#d24f1d;
-  color:#fff;
-  font-size:.75rem;
-  border-radius:999px;
-  padding:.5rem .85rem;
-  box-shadow:0 4px 12px rgba(210,79,29,.4);
+.hero-text {
+  max-width: 620px;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
 }
 
-.hero-title{
-  font-size:2.1rem;
-  font-weight:800;
-  color:#fff;
+/* ---- SEARCH ---- */
+.search-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
 }
 
-.meta-line{
-  display:flex;
-  flex-wrap:wrap;
-  gap:1.2rem;
-  color:rgba(255,255,255,.82);
-  font-size:.95rem;
+/* ---- EVENT CARDS ---- */
+.event-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  transition: var(--transition);
 }
 
-.meta-line span{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
+.event-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent) !important;
+  box-shadow: 0 14px 40px rgba(59,130,246,0.08) !important;
 }
 
-.hero-text{
-  max-width:620px;
-  color:rgba(255,255,255,.88);
-  font-size:.98rem;
-  line-height:1.7;
+.small-date {
+  width: 74px;
+  text-align: center;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.6rem 0.4rem;
 }
 
-.search-card{
-  background:#fff;
+.small-day {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
 }
 
-.event-card{
-  transition:transform .2s ease, box-shadow .2s ease;
+.small-month {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
 }
 
-.event-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 14px 30px rgba(0,0,0,.08) !important;
+.event-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
 }
 
-.small-date{
-  width:74px;
-  text-align:center;
-  background:#e7ddcf;
-  border-radius:14px;
-  padding:.6rem .4rem;
+.club-text {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
 }
 
-.small-day{
-  font-family:'Syne',sans-serif;
-  font-size:1.7rem;
-  font-weight:800;
-  line-height:1;
-}
-
-.small-month{
-  font-size:.8rem;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-top:.2rem;
-}
-
-.event-title{
-  font-size:1rem;
-  font-weight:700;
-}
-
-.club-text{
-  color:var(--accent);
-  font-size:1rem;
-  font-weight:600;
-  margin-bottom:.8rem;
-}
-
-.form-control,
-.form-select{
-  min-height:44px;
-}
-
-@media (max-width: 768px){
-  .page-title{
-    font-size:1.7rem;
-  }
-
-  .hero-title{
-    font-size:1.7rem;
-  }
-
-  .hero-date{
-    width:78px;
-    height:78px;
-  }
-
-  .hero-day{
-    font-size:1.9rem;
-  }
-
-  .small-date{
-    width:68px;
-  }
+@media (max-width: 768px) {
+  .page-title { font-size: 1.7rem; }
+  .hero-title { font-size: 1.7rem; }
+  .hero-date { width: 78px; height: 78px; }
+  .hero-day { font-size: 1.9rem; }
+  .small-date { width: 68px; }
 }

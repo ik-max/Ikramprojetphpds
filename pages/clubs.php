@@ -70,7 +70,7 @@ include '../includes/header.php';
                 <div class="row g-3 align-items-center">
                     <div class="col-lg-5">
                         <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-4">
+                            <span class="input-group-text border-end-0 rounded-start-4">
                                 <i class="bi bi-search"></i>
                             </span>
                             <input type="text" id="searchInput" class="form-control border-start-0 rounded-end-4" placeholder="Rechercher un club..." oninput="filterClubs()" />
@@ -79,13 +79,13 @@ include '../includes/header.php';
 
                     <div class="col-lg-7">
                         <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
-                            <button class="btn btn-dark filter-btn active" onclick="setFilter('tous', this)">Tous</button>
+                            <button class="btn btn-accent filter-btn active" onclick="setFilter('tous', this)">Tous</button>
                             <?php if ($logged_in): ?>
-                            <button class="btn btn-outline-dark filter-btn" onclick="setFilter('mes-clubs', this)">Mes clubs</button>
+                            <button class="btn btn-secondary-ghost filter-btn" onclick="setFilter('mes-clubs', this)">Mes clubs</button>
                             <?php endif; ?>
-                            <button class="btn btn-outline-dark filter-btn" onclick="setFilter('culturel', this)">Culturel</button>
-                            <button class="btn btn-outline-dark filter-btn" onclick="setFilter('scientifique', this)">Scientifique</button>
-                            <button class="btn btn-outline-dark filter-btn" onclick="setFilter('sportif', this)">Sportif</button>
+                            <button class="btn btn-secondary-ghost filter-btn" onclick="setFilter('culturel', this)">Culturel</button>
+                            <button class="btn btn-secondary-ghost filter-btn" onclick="setFilter('scientifique', this)">Scientifique</button>
+                            <button class="btn btn-secondary-ghost filter-btn" onclick="setFilter('sportif', this)">Sportif</button>
                         </div>
                     </div>
                 </div>
@@ -143,10 +143,10 @@ include '../includes/header.php';
                                 <div class="d-flex justify-content-between align-items-center gap-2">
                                     <?php if ($is_club_admin): ?>
                                         <span class="status-pill sp-admin">Admin</span>
-                                        <a href="admin.php" class="btn btn-outline-dark btn-sm">Gérer</a>
+                                        <a href="admin.php" class="btn btn-secondary-ghost btn-sm">Gérer</a>
                                     <?php elseif ($is_member): ?>
                                         <span class="status-pill sp-member">Membre</span>
-                                        <a href="club_details.php?id=<?= $club['id'] ?>" class="btn btn-outline-dark btn-sm">Voir détails</a>
+                                        <a href="club_details.php?id=<?= $club['id'] ?>" class="btn btn-secondary-ghost btn-sm">Voir détails</a>
                                     <?php elseif ($is_pending): ?>
                                         <span class="status-pill sp-open">En attente</span>
                                         <a href="club_details.php?id=<?= $club['id'] ?>" class="btn btn-outline-dark btn-sm">Voir détails</a>
@@ -205,7 +205,7 @@ include '../includes/header.php';
                             </div>
                         </div>
                         <div class="modal-footer border-0 px-4 pb-4">
-                            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-secondary-ghost" data-bs-dismiss="modal">Annuler</button>
                             <button type="submit" class="btn btn-accent">Créer le club</button>
                         </div>
                     </form>

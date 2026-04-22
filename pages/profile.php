@@ -169,7 +169,7 @@ include '../includes/header.php';
                             </div>
 
                             <div class="mt-4">
-                                <button type="submit" class="btn btn-dark px-4">Mettre à jour</button>
+                                <button type="submit" class="btn btn-secondary-ghost px-4">Mettre à jour</button>
                             </div>
                         </form>
                     </div>
@@ -209,7 +209,7 @@ include '../includes/header.php';
                                     <?php elseif ($club['statut'] == 'en_attente'): ?>
                                         <span class="status-pill wait-pill">En attente</span>
                                     <?php else: ?>
-                                        <span class="status-pill" style="background:#fee2e2;color:#dc2626;">Refusé</span>
+                                        <span class="pill pill-red">Refusé</span>
                                     <?php endif; ?>
                                 </div>
                             <?php endfor; ?>

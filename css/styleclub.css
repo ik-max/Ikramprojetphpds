@@ -1,189 +1,166 @@
-:root{
-  --paper:#f5f0e8;
-  --ink:#111111;
-  --accent:#c8421a;
-  --accent2:#1a6bc8;
-  --green:#1a8a4a;
-  --muted:#7a7368;
-  --border:rgba(13,13,13,0.1);
-  --card:#ffffff;
+/* ============================================
+   UniClubs — Clubs List Page Styles
+   Dark theme — extends global.css
+   ============================================ */
+
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
 }
 
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--paper);
-  color:var(--ink);
+/* ---- HERO ---- */
+.clubs-hero {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
 }
 
-.brand,
-.page-title,
-.club-title{
-  font-family:'Syne',sans-serif;
+.clubs-hero::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.brand{
-  font-weight:800;
-  letter-spacing:-0.02em;
+.hero-badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
 }
 
-.brand span{
-  color:var(--accent);
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 650px;
 }
 
-.page-title{
-  font-size:2rem;
-  font-weight:800;
-  letter-spacing:-0.03em;
+/* ---- BUTTONS ---- */
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  border: none;
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 0 15px var(--glow2);
 }
 
-.clubs-hero{
-  background:linear-gradient(135deg,#070707 0%, #0d1727 100%);
-  border-radius:1.8rem;
-  color:#fff;
-  box-shadow:0 10px 24px rgba(0,0,0,.08);
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px var(--glow);
+  color: #fff;
 }
 
-.hero-badge{
-  background:var(--accent);
-  color:#fff;
-  font-size:.75rem;
-  border-radius:999px;
-  padding:.5rem .85rem;
+/* ---- SEARCH ---- */
+.search-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
 }
 
-.hero-sub{
-  color:rgba(255,255,255,.78);
-  font-size:.95rem;
-  max-width:650px;
+.input-group-text {
+  background: var(--surface2) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
 }
 
-.btn-accent{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-  border-radius:.8rem;
-  font-weight:600;
-}
-
-.btn-accent:hover{
-  background:#af3f1b;
-  border-color:#af3f1b;
-  color:#fff;
-}
-
-.search-card{
-  background:#fff;
-}
-
-.input-group-text,
 .form-control,
-.form-select{
-  min-height:46px;
-  border-color:rgba(0,0,0,.08);
+.form-select {
+  min-height: 46px;
 }
 
-.form-control:focus,
-.form-select:focus{
-  border-color:var(--accent);
-  box-shadow:0 0 0 .2rem rgba(200,66,26,.12);
+/* ---- CLUB CARDS ---- */
+.club-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  transition: var(--transition);
 }
 
-.club-card{
-  background:var(--card);
-  transition:transform .2s ease, box-shadow .2s ease;
+.club-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent) !important;
+  box-shadow: 0 14px 40px rgba(59,130,246,0.1) !important;
 }
 
-.club-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 14px 30px rgba(0,0,0,.08) !important;
+.club-cover {
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface2);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-.club-cover{
-  height:120px;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.club-emoji { font-size: 2.8rem; }
+
+.category-label {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.15);
+  color: #60A5FA;
+  border: 1px solid rgba(59,130,246,0.2);
 }
 
-.club-emoji{
-  font-size:2.8rem;
+.club-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
 }
 
-.category-label{
-  position:absolute;
-  top:14px;
-  right:14px;
-  font-size:.7rem;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  padding:.35rem .65rem;
-  border-radius:999px;
-  background:rgba(255,255,255,.88);
-  color:#222;
+.club-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  min-height: 72px;
 }
 
-.club-title{
-  font-size:1.05rem;
-  font-weight:700;
-  margin-bottom:.5rem;
+.club-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
 }
 
-.club-desc{
-  color:var(--muted);
-  font-size:.9rem;
-  line-height:1.6;
-  min-height:72px;
+.club-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.club-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.85rem;
-  color:var(--muted);
-  font-size:.82rem;
+.status-pill {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.club-meta span{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-}
+.sp-member { background: rgba(59,130,246,0.12);  color: #60A5FA; }
+.sp-admin  { background: rgba(139,92,246,0.12);  color: #A78BFA; }
+.sp-open   { background: rgba(16,185,129,0.12);  color: #34D399; }
 
-.status-pill{
-  font-size:.75rem;
-  padding:.35rem .75rem;
-  border-radius:999px;
-  font-weight:700;
-  white-space:nowrap;
-}
-
-.sp-member{
-  background:#e8f0fc;
-  color:var(--accent2);
-}
-
-.sp-admin{
-  background:#fce8e3;
-  color:var(--accent);
-}
-
-.sp-open{
-  background:#e8f5ee;
-  color:var(--green);
-}
-
-@media (max-width: 768px){
-  .page-title{
-    font-size:1.7rem;
-  }
-
-  .club-cover{
-    height:110px;
-  }
-
-  .club-emoji{
-    font-size:2.4rem;
-  }
+@media (max-width: 768px) {
+  .page-title { font-size: 1.7rem; }
+  .club-cover { height: 110px; }
+  .club-emoji { font-size: 2.4rem; }
 }

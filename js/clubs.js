@@ -10,12 +10,12 @@ function setFilter(filter, btn) {
     // Retirer la classe active de tous les boutons
     var btns = document.querySelectorAll(".filter-btn");
     for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.remove("active", "btn-dark");
-        btns[i].classList.add("btn-outline-dark");
+        btns[i].classList.remove("active", "btn-accent");
+        btns[i].classList.add("btn-secondary-ghost");
     }
     // Ajouter la classe active au bouton cliqué
-    btn.classList.add("active", "btn-dark");
-    btn.classList.remove("btn-outline-dark");
+    btn.classList.add("active", "btn-accent");
+    btn.classList.remove("btn-secondary-ghost");
     filterClubs();
 }
 

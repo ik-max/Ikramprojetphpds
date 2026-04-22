@@ -123,7 +123,7 @@ include '../includes/header.php';
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#requests-tab">
                     Demandes 
                     <?php if (count($pending_requests) > 0): ?>
-                        <span class="badge bg-danger ms-1"><?= count($pending_requests) ?></span>
+                        <span class="badge" style="background:rgba(239,68,68,0.2);color:#F87171;"><?= count($pending_requests) ?></span>
                     <?php endif; ?>
                 </button>
             </li>
@@ -153,12 +153,12 @@ include '../includes/header.php';
                                 <div class="card admin-club-card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
                                     <div class="card-header border-0 py-3" style="background: <?= htmlspecialchars($club['couleur_gradient']) ?>">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="badge bg-white text-dark"><?= htmlspecialchars(ucfirst($club['categorie'])) ?></div>
+                                            <div class="pill pill-blue"><?= htmlspecialchars(ucfirst($club['categorie'])) ?></div>
                                             <div class="dropdown">
-                                                <button class="btn btn-sm btn-light rounded-circle" data-bs-toggle="dropdown">
+                                                <button class="btn btn-sm btn-secondary-ghost rounded-circle" data-bs-toggle="dropdown">
                                                     <i class="bi bi-three-dots-vertical"></i>
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                                                <ul class="dropdown-menu dropdown-menu-end" style="background:var(--surface2);border:1px solid var(--border);">
                                                     <li><a class="dropdown-item" href="club_details.php?id=<?= $club['id'] ?>">Voir la page publique</a></li>
                                                     <li><button class="dropdown-item" onclick="editClub(<?= $club['id'] ?>, '<?= htmlspecialchars(addslashes($club['nom'])) ?>', '<?= htmlspecialchars(addslashes($club['description'])) ?>', '<?= htmlspecialchars($club['categorie']) ?>', '<?= htmlspecialchars($club['emoji']) ?>')">Modifier</button></li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -182,21 +182,21 @@ include '../includes/header.php';
                                         
                                         <div class="row text-center g-2 mt-auto">
                                             <div class="col-4">
-                                                <div class="p-2 border rounded-3 bg-light">
-                                                    <div class="fw-bold fs-5 text-dark"><?= $stats['membres'] ?></div>
-                                                    <div class="small text-muted">Membres</div>
+                                                <div class="p-2 rounded-3" style="background:var(--surface2);border:1px solid var(--border);">
+                                                    <div class="fw-bold fs-5" style="color:#60A5FA;"><?= $stats['membres'] ?></div>
+                                                    <div class="small" style="color:var(--text-muted);">Membres</div>
                                                 </div>
                                             </div>
                                             <div class="col-4">
-                                                <div class="p-2 border rounded-3 <?= $stats['attente'] > 0 ? 'bg-danger-subtle border-danger-subtle' : 'bg-light' ?>">
-                                                    <div class="fw-bold fs-5 <?= $stats['attente'] > 0 ? 'text-danger' : 'text-dark' ?>"><?= $stats['attente'] ?></div>
-                                                    <div class="small <?= $stats['attente'] > 0 ? 'text-danger' : 'text-muted' ?>">Demandes</div>
+                                                <div class="p-2 rounded-3" style="background:<?= $stats['attente'] > 0 ? 'rgba(239,68,68,0.1)' : 'var(--surface2)' ?>;border:1px solid <?= $stats['attente'] > 0 ? 'rgba(239,68,68,0.2)' : 'var(--border)' ?>;">
+                                                    <div class="fw-bold fs-5" style="color:<?= $stats['attente'] > 0 ? '#F87171' : 'var(--text)' ?>;"><?= $stats['attente'] ?></div>
+                                                    <div class="small" style="color:<?= $stats['attente'] > 0 ? '#F87171' : 'var(--text-muted)' ?>;">Demandes</div>
                                                 </div>
                                             </div>
                                             <div class="col-4">
-                                                <div class="p-2 border rounded-3 bg-light">
-                                                    <div class="fw-bold fs-5 text-dark"><?= $stats['events'] ?></div>
-                                                    <div class="small text-muted">Événements</div>
+                                                <div class="p-2 rounded-3" style="background:var(--surface2);border:1px solid var(--border);">
+                                                    <div class="fw-bold fs-5" style="color:#34D399;"><?= $stats['events'] ?></div>
+                                                    <div class="small" style="color:var(--text-muted);">Événements</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@ include '../includes/header.php';
                         <?php else: ?>
                             <div class="table-responsive">
                                 <table class="table align-middle">
-                                    <thead class="table-light">
+                                    <thead>
                                         <tr>
                                             <th>Étudiant</th>
                                             <th>Filière</th>
@@ -235,13 +235,13 @@ include '../includes/header.php';
                                                     <div class="d-flex align-items-center gap-3">
                                                         <div class="avatar-sm flex-shrink-0"><?= strtoupper(substr($req['prenom'], 0, 1) . substr($req['nom'], 0, 1)) ?></div>
                                                         <div>
-                                                            <div class="fw-semibold text-dark"><?= htmlspecialchars($req['prenom'] . ' ' . $req['nom']) ?></div>
+                                                            <div class="fw-semibold"><?= htmlspecialchars($req['prenom'] . ' ' . $req['nom']) ?></div>
                                                             <div class="small text-muted"><?= htmlspecialchars($req['email']) ?></div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td><?= htmlspecialchars($req['filiere'] ?: 'Non spécifiée') ?></td>
-                                                <td><span class="badge bg-light text-dark border"><?= htmlspecialchars($req['club_nom']) ?></span></td>
+                                                <td><span class="pill pill-blue"><?= htmlspecialchars($req['club_nom']) ?></span></td>
                                                 <td><?= date('d/m/Y', strtotime($req['date_demande'])) ?></td>
                                                 <td class="text-end">
                                                     <form action="../actions/membership_respond.php" method="POST" class="d-inline">
@@ -281,7 +281,7 @@ include '../includes/header.php';
                         <?php else: ?>
                             <div class="table-responsive">
                                 <table class="table align-middle">
-                                    <thead class="table-light">
+                                    <thead>
                                         <tr>
                                             <th>Événement</th>
                                             <th>Club</th>
@@ -299,12 +299,12 @@ include '../includes/header.php';
                                             ?>
                                             <tr>
                                                 <td>
-                                                    <div class="fw-semibold text-dark"><?= htmlspecialchars($evt['titre']) ?></div>
+                                                    <div class="fw-semibold"><?= htmlspecialchars($evt['titre']) ?></div>
                                                     <div class="small text-muted"><i class="bi bi-geo-alt me-1"></i><?= htmlspecialchars($evt['lieu']) ?></div>
                                                 </td>
-                                                <td><span class="badge bg-light text-dark border"><?= htmlspecialchars($evt['club_nom']) ?></span></td>
+                                                <td><span class="pill pill-blue"><?= htmlspecialchars($evt['club_nom']) ?></span></td>
                                                 <td>
-                                                    <div class="text-dark"><?= $d_start->format('d/m/Y') ?></div>
+                                                    <div><?= $d_start->format('d/m/Y') ?></div>
                                                     <div class="small text-muted"><?= $d_start->format('H:i') ?> - <?= $d_end->format('H:i') ?></div>
                                                 </td>
                                                 <td>
@@ -319,7 +319,7 @@ include '../includes/header.php';
                                                     </div>
                                                 </td>
                                                 <td class="text-end">
-                                                    <button class="btn btn-outline-dark btn-sm rounded-pill mb-1" onclick="editEvent(<?= $evt['id'] ?>, '<?= htmlspecialchars(addslashes($evt['titre'])) ?>', '<?= htmlspecialchars(addslashes($evt['description'])) ?>', <?= $evt['club_id'] ?>, '<?= htmlspecialchars(addslashes($evt['lieu'])) ?>', '<?= $evt['date_debut'] ?>', '<?= $evt['date_fin'] ?>', <?= $evt['max_participants'] ?>)">Modifier</button>
+                                                    <button class="btn btn-secondary-ghost btn-sm rounded-pill mb-1" onclick="editEvent(<?= $evt['id'] ?>, '<?= htmlspecialchars(addslashes($evt['titre'])) ?>', '<?= htmlspecialchars(addslashes($evt['description'])) ?>', <?= $evt['club_id'] ?>, '<?= htmlspecialchars(addslashes($evt['lieu'])) ?>', '<?= $evt['date_debut'] ?>', '<?= $evt['date_fin'] ?>', <?= $evt['max_participants'] ?>)">Modifier</button>
                                                     <form action="../actions/event_delete.php" method="POST" class="d-inline" onsubmit="return confirm('Supprimer cet événement ?')">
                                                         <input type="hidden" name="event_id" value="<?= $evt['id'] ?>">
                                                         <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill mb-1">Supprimer</button>
@@ -370,8 +370,8 @@ include '../includes/header.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer border-top px-4 py-3 bg-light rounded-bottom-4">
-                            <button type="button" class="btn btn-outline-dark px-4" data-bs-dismiss="modal">Annuler</button>
+                        <div class="modal-footer px-4 py-3">
+                            <button type="button" class="btn btn-secondary-ghost px-4" data-bs-dismiss="modal">Annuler</button>
                             <button type="submit" class="btn btn-accent px-4 py-2">Créer le club</button>
                         </div>
                     </form>
@@ -414,9 +414,9 @@ include '../includes/header.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer border-top px-4 py-3 bg-light rounded-bottom-4">
-                            <button type="button" class="btn btn-outline-dark px-4" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-dark px-4 py-2">Enregistrer</button>
+                        <div class="modal-footer px-4 py-3">
+                            <button type="button" class="btn btn-secondary-ghost px-4" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-accent px-4 py-2">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -463,7 +463,7 @@ include '../includes/header.php';
                                     <label class="form-label fw-medium">Places max limitées à</label>
                                     <div class="input-group">
                                         <input type="number" name="max_participants" class="form-control" min="1" value="50" required />
-                                        <span class="input-group-text bg-light">personnes</span>
+                                        <span class="input-group-text">personnes</span>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -472,8 +472,8 @@ include '../includes/header.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer border-top px-4 py-3 bg-light rounded-bottom-4">
-                            <button type="button" class="btn btn-outline-dark px-4" data-bs-dismiss="modal">Annuler</button>
+                        <div class="modal-footer px-4 py-3">
+                            <button type="button" class="btn btn-secondary-ghost px-4" data-bs-dismiss="modal">Annuler</button>
                             <button type="submit" class="btn btn-accent px-4 py-2">Planifier</button>
                         </div>
                     </form>
@@ -520,9 +520,9 @@ include '../includes/header.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer border-top px-4 py-3 bg-light rounded-bottom-4">
-                            <button type="button" class="btn btn-outline-dark px-4" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-dark px-4 py-2">Enregistrer</button>
+                        <div class="modal-footer px-4 py-3">
+                            <button type="button" class="btn btn-secondary-ghost px-4" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-accent px-4 py-2">Enregistrer</button>
                         </div>
                     </form>
                 </div>

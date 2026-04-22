@@ -112,10 +112,10 @@ include '../includes/header.php';
                         <?php elseif ($is_member): ?>
                             <form action="../actions/membership_leave.php" method="POST" onsubmit="return confirm('Voulez-vous vraiment quitter ce club ?')">
                                 <input type="hidden" name="club_id" value="<?= $club['id'] ?>">
-                                <button type="submit" class="btn btn-outline-light">Quitter le club</button>
+                                <button type="submit" class="btn btn-danger-ghost">Quitter le club</button>
                             </form>
                         <?php elseif ($is_pending): ?>
-                            <button class="btn btn-outline-light" disabled>Demande en attente...</button>
+                            <button class="btn btn-secondary-ghost" disabled>Demande en attente...</button>
                         <?php else: ?>
                             <form action="../actions/membership_request.php" method="POST">
                                 <input type="hidden" name="club_id" value="<?= $club['id'] ?>">
@@ -166,7 +166,7 @@ include '../includes/header.php';
                                         <div class="item-title"><?= htmlspecialchars($evt['titre']) ?></div>
                                         <div class="item-sub"><?= htmlspecialchars($evt['lieu']) ?> · <?= $time_start ?> - <?= $time_end ?></div>
                                     </div>
-                                    <a href="event_details.php?id=<?= $evt['id'] ?>" class="btn btn-outline-dark btn-sm">Détails</a>
+                                    <a href="event_details.php?id=<?= $evt['id'] ?>" class="btn btn-secondary-ghost btn-sm">Détails</a>
                                 </div>
                             <?php endfor; ?>
                         <?php endif; ?>
