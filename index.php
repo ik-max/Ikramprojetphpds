@@ -1,0 +1,166 @@
+<?php
+// ============================================
+// Page d'accueil — Landing Page
+// ============================================
+
+// Inclure la connexion à la base de données
+require_once 'actions/connexion.php';
+// Démarrer la session
+require_once 'actions/auth_check.php';
+
+// Définir le titre et le style de la page
+$page_title = 'UniClubs — Plateforme de Gestion de Clubs Universitaires';
+$page_css = 'css/styleindex.css';
+$active_page = 'index';
+
+$logged_in = isset($_SESSION['user_id']);
+$is_admin_user = $logged_in && ($_SESSION['role'] == 'admin_club');
+$dash_url = $is_admin_user ? 'pages/admin.php' : 'pages/dashboard.php';
+
+// Statistiques
+$nb_clubs = $cnx->query("SELECT COUNT(*) as total FROM clubs")->fetch()['total'];
+$nb_users = $cnx->query("SELECT COUNT(*) as total FROM users")->fetch()['total'];
+$nb_events = $cnx->query("SELECT COUNT(*) as total FROM evenements")->fetch()['total'];
+
+// Clubs à la une
+$latest_clubs = $cnx->query("SELECT * FROM clubs ORDER BY created_at DESC LIMIT 5")->fetchAll();
+
+// Base URL pour les liens
+$base_url = '/Ikram Bali/Ikramprojetphpds/';
+
+// Inclure le header
+include 'includes/header.php';
+?>
+<script>document.body.classList.add('index-page');</script>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Plateforme universitaire officielle
+    </div>
+
+    <h1>
+      Découvrez vos<br>
+      <span class="grad">clubs universitaires</span><br>
+      en un seul endroit
+    </h1>
+
+    <p>
+      Rejoignez des clubs, participez aux événements, gérez vos activités étudiantes.
+      Tout ce dont vous avez besoin pour une vie universitaire épanouie.
+    </p>
+
+    <div class="hero-actions">
+      <a href="<?php echo $logged_in ? $base_url . $dash_url : $base_url . 'pages/login.php'; ?>" class="btn-hero btn-hero-primary">Commencer maintenant →</a>
+      <a href="<?php echo $base_url; ?>pages/clubs.php" class="btn-hero btn-hero-secondary">Explorer les clubs</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number"><?php echo $nb_clubs; ?></div>
+        <div class="stat-label">Clubs actifs</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number"><?php echo $nb_users; ?></div>
+        <div class="stat-label">Étudiants inscrits</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number"><?php echo $nb_events; ?></div>
+        <div class="stat-label">Événements / an</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <div class="section-label">Fonctionnalités</div>
+    <h2 class="section-title">Tout ce qu'il vous faut<br>pour vos clubs</h2>
+    <p class="section-sub">Une plateforme complète pensée pour les étudiants et les responsables de clubs universitaires.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon blue">🎓</div>
+        <h3>Gestion des membres</h3>
+        <p>Rejoignez des clubs, gérez vos adhésions et suivez vos activités depuis votre tableau de bord.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon cyan">📅</div>
+        <h3>Événements &amp; Activités</h3>
+        <p>Créez, modifiez et inscrivez-vous aux événements organisés par les clubs de votre université.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple">🔔</div>
+        <h3>Demandes d'adhésion</h3>
+        <p>Envoyez des demandes pour rejoindre des clubs. Les admins valident ou refusent vos candidatures.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon gold">⚙️</div>
+        <h3>Admin de club</h3>
+        <p>Les responsables gèrent les informations du club, les membres, et organisent les événements facilement.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon green">🔍</div>
+        <h3>Recherche avancée</h3>
+        <p>Filtrez et recherchez des clubs par catégorie, popularité ou événements à venir.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon pink">🌐</div>
+        <h3>Profil personnalisé</h3>
+        <p>Gérez votre profil étudiant et suivez tous vos clubs et événements en un seul endroit.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLUBS SHOWCASE -->
+  <section class="clubs-section">
+    <div class="clubs-inner">
+      <div class="section-label">Clubs à la une</div>
+      <h2 class="section-title">Explorez nos clubs</h2>
+      <div class="clubs-scroll">
+        <?php if (count($latest_clubs) > 0): ?>
+          <?php foreach ($latest_clubs as $club): ?>
+            <?php
+            $mc = $cnx->prepare("SELECT COUNT(*) as nb FROM membres WHERE club_id=? AND statut='accepte'");
+            $mc->execute([$club['id']]);
+            $nb_m = $mc->fetch()['nb'];
+            $desc = strlen($club['description']) > 80 ? substr($club['description'], 0, 80) . '...' : $club['description'];
+            ?>
+            <div class="club-card">
+              <div class="club-avatar" style="background:rgba(59,130,246,0.12)"><?php echo htmlspecialchars($club['emoji']); ?></div>
+              <h4><?php echo htmlspecialchars($club['nom']); ?></h4>
+              <p><?php echo htmlspecialchars($desc); ?></p>
+              <div class="club-meta">
+                <span class="club-members">👥 <?php echo $nb_m; ?> membres</span>
+                <span class="club-tag"><?php echo htmlspecialchars(ucfirst($club['categorie'])); ?></span>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p style="color: var(--text-muted);">Aucun enregistrement trouvé.</p>
+        <?php endif; ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <h2>Prêt à rejoindre<br>votre communauté?</h2>
+    <p>Créez votre compte gratuitement et commencez à explorer les clubs dès aujourd'hui.</p>
+    <a href="<?php echo $logged_in ? $base_url . $dash_url : $base_url . 'pages/login.php'; ?>" class="btn-hero btn-hero-primary" style="position:relative;z-index:1;">Créer mon compte →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="index-footer">
+    <div class="footer-logo">UniClubs</div>
+    <p>© 2024 UniClubs — Plateforme de gestion de clubs universitaires</p>
+    <p>Fait avec ❤️ pour les étudiants</p>
+  </footer>
+
+<?php include 'includes/footer.php'; ?>
