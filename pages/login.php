@@ -153,7 +153,7 @@ include '../includes/header.php';
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-dark w-100 mt-4">
+                                    <button type="submit" class="btn btn-secondary-ghost w-100 mt-4">
                                         Créer mon compte
                                     </button>
                                 </form>

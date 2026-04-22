@@ -95,7 +95,7 @@ include '../includes/header.php';
                             <?php if ($is_registered): ?>
                                 <form action="../actions/event_unregister.php" method="POST">
                                     <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-                                    <button type="submit" class="btn btn-outline-light">Annuler l'inscription</button>
+                                    <button type="submit" class="btn btn-danger-ghost">Annuler l'inscription</button>
                                 </form>
                             <?php else: ?>
                                 <form action="../actions/event_register.php" method="POST">
@@ -187,7 +187,7 @@ include '../includes/header.php';
                                 <?php if ($is_registered): ?>
                                     <form action="../actions/event_unregister.php" method="POST">
                                         <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-                                        <button type="submit" class="btn btn-outline-danger w-100">Annuler l'inscription</button>
+                                        <button type="submit" class="btn btn-danger-ghost w-100">Annuler l'inscription</button>
                                     </form>
                                 <?php else: ?>
                                     <form action="../actions/event_register.php" method="POST">
@@ -196,7 +196,7 @@ include '../includes/header.php';
                                     </form>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <a href="events.php" class="btn btn-outline-dark">Retour aux événements</a>
+                            <a href="events.php" class="btn btn-secondary-ghost">Retour aux événements</a>
                         </div>
                     </div>
                 </div>
